@@ -2,6 +2,8 @@ let state = { board: [], currentGame: [], savedGames: [] };
 
 function start() {
     createBoard();
+    newGame();
+
 
     console.log(state.board)
 }
@@ -13,6 +15,13 @@ function createBoard() {
         state.board.push(index);
     }
 }
+
+function newGame() {
+    resetGame();
+    render();
+}
+
+function render() {}
 
 function addNumberToGame(numberToAdd) {
     if (numberToAdd < 1 || numberToAdd > 60) {
