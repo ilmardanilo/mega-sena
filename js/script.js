@@ -21,7 +21,27 @@ function newGame() {
     render();
 }
 
-function render() {}
+function render() {
+    renderBoard();
+}
+
+function renderBoard() {
+    let divBoard = document.querySelector('#megasena-board');
+    divBoard.innerHTML = '';
+
+    let ulNumbers = document.createElement('ul');
+
+    for (let i = 0; i < state.board.length; i++) {
+        const currentNumber = state.board[i];
+        
+        let liNumber = document.createElement('li');
+        liNumber.textContent = currentNumber;
+
+        ulNumbers.appendChild(liNumber);
+    }
+
+    divBoard.appendChild(ulNumbers);
+}
 
 function addNumberToGame(numberToAdd) {
     if (numberToAdd < 1 || numberToAdd > 60) {
