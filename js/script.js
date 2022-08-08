@@ -17,10 +17,14 @@ function createBoard() {
 function newGame() {
     resetGame();
     render();
+
+    console.log(state.currentGame);
 }
 
 function render() {
     renderBoard();
+    renderButtons();
+    renderSavedGames();
 }
 
 function renderBoard() {
@@ -53,6 +57,50 @@ function handleNumberClick(event) {
     }
 
     console.log(state.currentGame);
+}
+
+function renderButtons() {
+    let divButtons = document.querySelector('#megasena-buttons')
+    divButtons.innerHTML = '';
+    
+    const buttonNewGame = createNewGameButton();
+    const buttonRandomGame = createRandomGameButton();
+    const buttonSaveGame = createSaveGameButton();
+
+    divButtons.appendChild(buttonNewGame);
+    divButtons.appendChild(buttonRandomGame);
+    divButtons.appendChild(buttonSaveGame);
+}
+
+function createNewGameButton() {
+    const button = document.createElement('button');
+    button.textContent = 'Novo jogo';
+
+    button.addEventListener('click', newGame);
+
+    return button; 
+}
+
+function createRandomGameButton() {
+    const button = document.createElement('button');
+    button.textContent = 'Jogo aleatório';
+
+    button.addEventListener('click', randomGame);
+
+    return button;
+}
+
+function createSaveGameButton() {
+    const button = document.createElement('button');
+    button.textContent = 'Salvar jogo';
+
+    button.addEventListener('click', saveGame);
+
+    return button;
+}
+
+function renderSavedGames() {
+
 }
 
 function addNumberToGame(numberToAdd) {
@@ -101,6 +149,8 @@ function saveGame() {
     }
 
     state.savedGames.push(state.currentGame);
+
+    newGame();
 }
 
 function isGameComplete() {
@@ -109,6 +159,15 @@ function isGameComplete() {
 
 function resetGame() {
     state.currentGame = [];
+}
+
+function randomGame() {
+    resetGame();
+    
+    while (!isGameComplete()) {
+        let randomNumber = Math.ceil(Math.random() * 60);
+        addNumberToGame(randomNumber);
+    }
 }
 
 start();
