@@ -113,7 +113,7 @@ function renderSavedGames() {
             const element = state.savedGames[i];
             
             let liGame = document.createElement('li');
-            liGame.textContent = element;
+            liGame.textContent = element.sort((a, b) => a - b).join(', ');
 
             ulSavedGames.appendChild(liGame);
         }
