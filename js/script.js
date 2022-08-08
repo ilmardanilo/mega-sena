@@ -4,8 +4,6 @@ function start() {
     createBoard();
     newGame();
 
-
-    console.log(state.board)
 }
 
 function createBoard() {
@@ -37,10 +35,24 @@ function renderBoard() {
         let liNumber = document.createElement('li');
         liNumber.textContent = currentNumber;
 
+        liNumber.addEventListener('click', handleNumberClick);
+
         ulNumbers.appendChild(liNumber);
     }
 
     divBoard.appendChild(ulNumbers);
+}
+
+function handleNumberClick(event) {
+    let liValue = Number(event.target.textContent);
+
+    if (isNumberInGame(liValue)) {
+        removeNumberFromGame(liValue);
+    } else {
+        addNumberToGame(liValue);
+    }
+
+    console.log(state.currentGame);
 }
 
 function addNumberToGame(numberToAdd) {
