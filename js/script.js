@@ -3,7 +3,6 @@ let state = { board: [], currentGame: [], savedGames: [] };
 function start() {
     createBoard();
     newGame();
-
 }
 
 function createBoard() {
@@ -32,14 +31,20 @@ function renderBoard() {
     divBoard.innerHTML = '';
 
     let ulNumbers = document.createElement('ul');
+    ulNumbers.classList.add('numbers');
 
     for (let i = 0; i < state.board.length; i++) {
         const currentNumber = state.board[i];
         
         let liNumber = document.createElement('li');
         liNumber.textContent = currentNumber;
+        liNumber.classList.add('number');
 
         liNumber.addEventListener('click', handleNumberClick);
+
+        if (isNumberInGame(currentNumber)) {
+            liNumber.classList.add('selected-number');
+        }
 
         ulNumbers.appendChild(liNumber);
     }
@@ -57,6 +62,7 @@ function handleNumberClick(event) {
     }
 
     console.log(state.currentGame);
+    render();
 }
 
 function renderButtons() {
@@ -113,7 +119,7 @@ function renderSavedGames() {
             const element = state.savedGames[i];
             
             let liGame = document.createElement('li');
-            liGame.textContent = element.sort((a, b) => a - b).join(', ');
+            liGame.textContent = element.sort((a, b) => a - b).join(' ');
 
             ulSavedGames.appendChild(liGame);
         }
