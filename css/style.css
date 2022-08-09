@@ -78,3 +78,25 @@ button {
 button:hover {
     background-color: #1E9BB1;
 }
+
+#megasena-saved-games p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0065B7;
+    margin-bottom: 7px;
+}
+
+#megasena-saved-games ul {
+    list-style-type: ticket;
+}
+
+#megasena-saved-games li {
+    text-align: left;
+    font-size: 18px;
+}
+
+@counter-style ticket {
+    system: cyclic;
+    symbols: "\1F3AB";
+    suffix: " ";
+}

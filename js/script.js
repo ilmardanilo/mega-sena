@@ -127,13 +127,14 @@ function renderSavedGames() {
     if (state.savedGames.length === 0) {
         divSavedGames.innerHTML = '<p>Nenhum jogo salvo.</p>';
     } else {
+        divSavedGames.innerHTML = '<p>Jogos salvos:</p>';
         let ulSavedGames = document.createElement('ul');
 
         for (let i = 0; i < state.savedGames.length; i++) {
             const element = state.savedGames[i];
             
             let liGame = document.createElement('li');
-            liGame.textContent = element.sort((a, b) => a - b).join(' ');
+            liGame.textContent = element.sort((a, b) => a - b).join(', ');
 
             ulSavedGames.appendChild(liGame);
         }
